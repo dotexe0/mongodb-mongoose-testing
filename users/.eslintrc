@@ -1,0 +1,20 @@
+{
+  "extends": "node_modules/@wisersolutions",
+  "rules": {
+    "no-console": "off"
+  },
+  "overrides": [
+    {
+      "files": ["src/**/*.js", "!src/api/**/*.js"],
+      "env": {
+        "browser": true
+      }
+    },
+    {
+      "files": ["src/**/*.test.js", "!src/api/**/*.*"],
+      "env": {
+        "mocha": true
+      }
+    }
+  ]
+}
