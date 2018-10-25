@@ -19,7 +19,6 @@ describe('reading users from db', () => {
 
   it('find a user with a particular id', done => {
     User.findOne({ _id: daniel._id }).then(user => {
-      console.log('user', user)
       assert(user.name === 'Daniel')
       done()
     })
