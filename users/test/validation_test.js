@@ -2,18 +2,20 @@ const assert = require('assert')
 const User = require('../src/users')
 
 describe('Validating records', done => {
-  it('requires a user name', () => {
+  it('requires a user name', done => {
     const user = new User({ name: undefined })
     const validationResult = user.validateSync()
     const { message } = validationResult.errors.name
     assert(message === 'Name is required.')
+    done()
   })
 
-  it("requires a user's name longer than 2 chars", () => {
+  it("requires a user's name longer than 2 chars", done => {
     const user = new User({ name: 'Da' })
     const validationResult = user.validateSync()
     const { message } = validationResult.errors.name
     assert(message === 'Name must be longer than 2 characters.')
+    done()
   })
 
   it('disallows invalid records from being saved', done => {

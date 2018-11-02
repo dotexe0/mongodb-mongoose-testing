@@ -5,7 +5,7 @@ describe('Updating records', () => {
   let daniel
 
   beforeEach(done => {
-    daniel = new User({ name: 'Daniel', postCount: 0 })
+    daniel = new User({ name: 'Daniel', likes: 0 })
     daniel.save().then(() => done())
   })
 
@@ -17,9 +17,8 @@ describe('Updating records', () => {
     })
 
   const assertCount = (operation, done) =>
-    operation.then(() => User.find({})).then(users => {
-      assert(users.length === 1)
-      assert(users[0].postCount === 1)
+    operation.then(() => User.findOne({ name: 'Daniel'})).then(user => {
+      assert(user.likes === 10)
       done()
     })
 
@@ -44,7 +43,7 @@ describe('Updating records', () => {
     assertName(User.findByIdAndUpdate(daniel._id, { name: 'dandan' }), done)
   })
 
-  xit('increments postcount by one using class based method', done => {
-    assertCount(User.update({ name: 'Daniel' }, { $inc: { postCount: 1 } }), done)
+  it('increments postcount by one using class based method', done => {
+    assertCount(User.update({ name: 'Daniel' }, { $inc: { likes: 10 } }), done)
   })
 })

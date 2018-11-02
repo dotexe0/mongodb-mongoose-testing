@@ -8,11 +8,12 @@ const UserSchema = new Schema({
     required: [true, 'Name is required.'],
     validate: { validator: name => name.length > 2, message: 'Name must be longer than 2 characters.' }
   },
-  posts: [PostSchema]
+  posts: [PostSchema],
+  likes: Number
 })
 
 UserSchema.virtual('postCount').get(function() {
-
+  return this.posts.length
 })
 
 const User = mongoose.model('user', UserSchema)
