@@ -44,7 +44,7 @@ describe('Updating records', () => {
     assertName(User.findByIdAndUpdate(daniel._id, { name: 'dandan' }), done)
   })
 
-  it('increments postcount by one using class based method', done => {
+  xit('increments postcount by one using class based method', done => {
     assertCount(User.update({ name: 'Daniel' }, { $inc: { postCount: 1 } }), done)
   })
 })
