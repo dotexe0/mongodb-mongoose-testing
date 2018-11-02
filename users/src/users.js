@@ -9,7 +9,8 @@ const UserSchema = new Schema({
     validate: { validator: name => name.length > 2, message: 'Name must be longer than 2 characters.' }
   },
   posts: [PostSchema],
-  likes: Number
+  likes: Number,
+  blogPosts: { type: Schema.Types.ObjectId, ref: 'blogPost' }
 })
 
 UserSchema.virtual('postCount').get(function() {
